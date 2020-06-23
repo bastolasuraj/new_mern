@@ -51,7 +51,7 @@ exports.userDelete = async (req, res) => {
     res.send({
         data: user,
     })
-    res.send("Delete User")
+    // res.send("Delete User")
 }
 exports.login = async (req, res) => {
     const user = await Users.findOne({username: req.body.username})
@@ -81,6 +81,7 @@ exports.login = async (req, res) => {
                 expiresIn:ACCESS_TOKEN_EXP,
                 usertype:user.usertype?user.usertype:""
             })
+            // res.cookie("refreshToken",refreshToken)
         })
     } else {
         throw new Error("Unauthorized Access")

@@ -3,7 +3,7 @@ const {JW_SECRET_ACCESS_TOKEN} = require('../config')
 const {Users} = require('../models')
 exports.auth =  (req, res, next) => {
     const authorization = req.headers.authorization
-    console.log("",req.path)
+     console.log("",authorization)
     if(req.path==="/api/login"){
         next()
         return
@@ -15,7 +15,7 @@ exports.auth =  (req, res, next) => {
     const accessToken = authorization.split(" ")[1]
     // console.log(accessToken)
     const payload = verify(accessToken, JW_SECRET_ACCESS_TOKEN)
-    console.log("----", payload)
+    // console.log("----", payload)
     if(!payload){
         throw new Error("Not a registered user")
     }
@@ -28,6 +28,6 @@ exports.auth =  (req, res, next) => {
     if(!user){
         throw new Error("Not a registered User")
     }
-    console.log("user---",user)
+    // console.log("user---",user)
     next()
 }
